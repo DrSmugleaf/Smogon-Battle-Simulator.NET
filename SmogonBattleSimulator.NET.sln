@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmogonBattleSimulator.NET", "SmogonBattleSimulator.NET\SmogonBattleSimulator.NET.csproj", "{F056DAA5-34A8-495E-A074-63A351533CF3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmogonBattleSimulator.NET.UnitTests", "SmogonBattleSimulator.NET.UnitTests\SmogonBattleSimulator.NET.UnitTests.csproj", "{128E8F61-5171-478F-8390-E40909E96C99}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{F056DAA5-34A8-495E-A074-63A351533CF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F056DAA5-34A8-495E-A074-63A351533CF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F056DAA5-34A8-495E-A074-63A351533CF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{128E8F61-5171-478F-8390-E40909E96C99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{128E8F61-5171-478F-8390-E40909E96C99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{128E8F61-5171-478F-8390-E40909E96C99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{128E8F61-5171-478F-8390-E40909E96C99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

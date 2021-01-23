@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace SmogonBattleSimulator.NET.Collections.IndexedSet
@@ -12,6 +13,12 @@ namespace SmogonBattleSimulator.NET.Collections.IndexedSet
         {
             _set = new HashSet<T>(capacity, comparer);
             _list = new List<T>(capacity);
+        }
+
+        public IndexedSet()
+        {
+            _set = new HashSet<T>();
+            _list = new List<T>();
         }
 
         public IEnumerator<T> GetEnumerator()
@@ -35,7 +42,16 @@ namespace SmogonBattleSimulator.NET.Collections.IndexedSet
             return false;
         }
 
+        public void CopyTo(Array array, int index)
+        {
+            ((ICollection)_list).CopyTo(array, index);
+        }
+
         public int Count => _list.Count;
+
+        public bool IsSynchronized => ((ICollection) _list).IsSynchronized;
+
+        public object SyncRoot => ((ICollection) _list).SyncRoot;
 
         public bool IsReadOnly => ((ICollection<T>) _set).IsReadOnly;
 
@@ -136,6 +152,11 @@ namespace SmogonBattleSimulator.NET.Collections.IndexedSet
 
         public void Insert(int index, T item)
         {
+            if (index > Count)
+            {
+                throw new ArgumentOutOfRangeException(nameof(index));
+            }
+
             if (_set.Add(item))
             {
                 _list.Insert(index, item);
@@ -144,6 +165,11 @@ namespace SmogonBattleSimulator.NET.Collections.IndexedSet
 
         public void RemoveAt(int index)
         {
+            if (index >= Count)
+            {
+                throw new ArgumentOutOfRangeException(nameof(index));
+            }
+
             var element = _list[index];
 
             if (_set.Remove(element))
@@ -157,11 +183,16 @@ namespace SmogonBattleSimulator.NET.Collections.IndexedSet
             get => _list[index];
             set
             {
+                if (index >= Count)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(index));
+                }
+
                 if (_set.Add(value))
                 {
                     var old = _list[index];
-                    _list[index] = value;
                     _set.Remove(old);
+                    _list[index] = value;
                 }
             }
         }
