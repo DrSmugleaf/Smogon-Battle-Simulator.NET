@@ -81,8 +81,7 @@ namespace SmogonBattleSimulator.NET.Collections.IndexedSet
 
             foreach (var x in other)
             {
-                _set.Remove(x);
-                _list.Remove(x);
+                Remove(x);
             }
         }
 
