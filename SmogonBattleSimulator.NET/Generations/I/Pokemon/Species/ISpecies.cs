@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using SmogonBattleSimulator.NET.Collections.IndexedSet;
 using SmogonBattleSimulator.NET.Generations.I.Move;
 using SmogonBattleSimulator.NET.Generations.I.Pokemon.Species.Tier;
 using SmogonBattleSimulator.NET.Generations.I.Type;
@@ -23,9 +23,9 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Species
 
         decimal Height { get; }
 
-        IReadOnlySet<IType> Types { get; }
+        IIndexedSet<IType> Types { get; }
 
-        IReadOnlySet<IMove> Moves { get; }
+        IIndexedSet<IMove> Moves { get; }
 
         ITier Tier { get; }
     }

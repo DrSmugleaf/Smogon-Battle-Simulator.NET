@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using SmogonBattleSimulator.NET.Collections.IndexedSet;
 using SmogonBattleSimulator.NET.Generations.I.Format.Clause;
 using SmogonBattleSimulator.NET.Generations.I.Format.Mod;
 using SmogonBattleSimulator.NET.Generations.I.Format.Restriction;
@@ -10,9 +10,9 @@ namespace SmogonBattleSimulator.NET.Generations.I.Format
         public Format(
             string name,
             string description,
-            IReadOnlySet<IClause> clauses,
-            IReadOnlySet<IMod> mods,
-            IReadOnlySet<IRestriction> restrictions)
+            IIndexedSet<IClause> clauses,
+            IIndexedSet<IMod> mods,
+            IIndexedSet<IRestriction> restrictions)
         {
             Name = name;
             Description = description;
@@ -25,10 +25,10 @@ namespace SmogonBattleSimulator.NET.Generations.I.Format
 
         public string Description { get; }
 
-        public IReadOnlySet<IClause> Clauses { get; }
+        public IIndexedSet<IClause> Clauses { get; }
 
-        public IReadOnlySet<IMod> Mods { get; }
+        public IIndexedSet<IMod> Mods { get; }
 
-        public IReadOnlySet<IRestriction> Restrictions { get; }
+        public IIndexedSet<IRestriction> Restrictions { get; }
     }
 }

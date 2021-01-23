@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using SmogonBattleSimulator.NET.Collections.IndexedSet;
 using SmogonBattleSimulator.NET.Generations.I.Format.Clause;
 using SmogonBattleSimulator.NET.Generations.I.Format.Mod;
 using SmogonBattleSimulator.NET.Generations.I.Format.Restriction;
@@ -11,10 +11,10 @@ namespace SmogonBattleSimulator.NET.Generations.I.Format
 
         string Description { get; }
 
-        IReadOnlySet<IClause> Clauses { get; }
+        IIndexedSet<IClause> Clauses { get; }
 
-        IReadOnlySet<IMod> Mods { get; }
+        IIndexedSet<IMod> Mods { get; }
 
-        IReadOnlySet<IRestriction> Restrictions { get; }
+        IIndexedSet<IRestriction> Restrictions { get; }
     }
 }
