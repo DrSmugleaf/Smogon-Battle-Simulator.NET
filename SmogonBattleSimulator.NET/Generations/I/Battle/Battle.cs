@@ -10,7 +10,7 @@ namespace SmogonBattleSimulator.NET.Generations.I.Battle
     {
         public Battle(IGeneration generation, IReadOnlyIndexedSet<ITrainer> trainers)
         {
-            RandomProvider = new RandomProvider.RandomProvider();
+            RandomProvider = new RandomProvider.RandomGenerator();
             Generation = generation;
             Trainers = trainers;
         }

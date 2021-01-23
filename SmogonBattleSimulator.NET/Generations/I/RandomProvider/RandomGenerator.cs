@@ -2,16 +2,16 @@
 
 namespace SmogonBattleSimulator.NET.Generations.I.RandomProvider
 {
-    public class RandomProvider : IRandomProvider
+    public class RandomGenerator : IRandomProvider
     {
         private readonly Random _random;
 
-        public RandomProvider(int seed)
+        public RandomGenerator(int seed)
         {
             _random = new Random(seed);
         }
 
-        public RandomProvider()
+        public RandomGenerator()
         {
             _random = new Random();
         }
