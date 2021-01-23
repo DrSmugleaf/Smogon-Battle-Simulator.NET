@@ -16,6 +16,8 @@
         /// <returns>true if it was removed, false if it was not subscribed.</returns>
         bool Unsubscribe<T>(EventHandler<T> handler) where T : IEvent;
 
+        void Clear();
+
         void Send(IEvent @event);
     }
 }

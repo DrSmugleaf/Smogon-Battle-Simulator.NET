@@ -24,5 +24,10 @@ namespace SmogonBattleSimulator.NET.Generations.I.Battle
         public IFormula Formula { get; } = new Formula();
 
         public IEventBus EventBus { get; } = new EventBus();
+
+        public void End()
+        {
+            EventBus.Clear();
+        }
     }
 }

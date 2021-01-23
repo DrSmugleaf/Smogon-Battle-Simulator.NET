@@ -28,6 +28,11 @@ namespace SmogonBattleSimulator.NET.Generations.I.Events
             return listeners.Remove(handler);
         }
 
+        public void Clear()
+        {
+            _listeners.Clear();
+        }
+
         public void Send(IEvent @event)
         {
             if (_listeners.TryGetValue(@event.GetType(), out var listeners))
