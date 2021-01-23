@@ -1,5 +1,5 @@
-﻿using SmogonBattleSimulator.NET.Generations.I.Pokemon;
-using SmogonBattleSimulator.NET.Generations.I.Pokemon.Species.Stat;
+﻿using SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle;
+using SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle.Stat;
 
 namespace SmogonBattleSimulator.NET.Generations.I.Move.Category
 {

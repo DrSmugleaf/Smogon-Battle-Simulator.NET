@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using SmogonBattleSimulator.NET.Generations.I.Battle;
-using SmogonBattleSimulator.NET.Generations.I.Pokemon;
+using SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle;
 
 namespace SmogonBattleSimulator.NET.Generations.I.Move.Effect.Context
 {

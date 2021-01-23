@@ -19,7 +19,7 @@ namespace SmogonBattleSimulator.NET.UnitTests.Move.Effect
             Assert.False(effect.Handled);
 
             var @event = new TestEvent();
-            eventBus.Send(@event);
+            eventBus.Raise(@event);
 
             Assert.True(effect.Handled);
 
@@ -30,7 +30,7 @@ namespace SmogonBattleSimulator.NET.UnitTests.Move.Effect
             Assert.False(effect.Handled);
 
             @event = new TestEvent();
-            eventBus.Send(@event);
+            eventBus.Raise(@event);
             Assert.False(effect.Handled);
         }
     }

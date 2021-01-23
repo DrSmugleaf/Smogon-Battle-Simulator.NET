@@ -1,6 +1,6 @@
 ﻿using SmogonBattleSimulator.NET.Generations.I.Move.Effect.Context;
 
-namespace SmogonBattleSimulator.NET.Generations.I.Move.Effect
+namespace SmogonBattleSimulator.NET.Generations.I.Move.Effect.Effects
 {
     [Effect("Damage")]
     public class DamageEffect : BaseEffect

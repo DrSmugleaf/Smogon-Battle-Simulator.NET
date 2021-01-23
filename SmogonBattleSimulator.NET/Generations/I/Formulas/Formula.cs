@@ -1,5 +1,5 @@
 ﻿using SmogonBattleSimulator.NET.Generations.I.Move.Effect.Context;
-using SmogonBattleSimulator.NET.Generations.I.Pokemon;
+using SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle;
 using SmogonBattleSimulator.NET.Generations.I.RandomProvider;
 using SmogonBattleSimulator.NET.Generations.I.Type;
 

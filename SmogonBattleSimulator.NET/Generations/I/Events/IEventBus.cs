@@ -18,6 +18,6 @@
 
         void Clear();
 
-        void Send(IEvent @event);
+        void Raise(IEvent @event);
     }
 }

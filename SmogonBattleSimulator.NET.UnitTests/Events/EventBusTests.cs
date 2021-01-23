@@ -16,7 +16,7 @@ namespace SmogonBattleSimulator.NET.UnitTests.Events
             Assert.False(listener.Handled);
 
             var @event = new TestEvent();
-            bus.Send(@event);
+            bus.Raise(@event);
 
             Assert.False(listener.Handled);
             Assert.True(bus.Subscribe<TestEvent>(listener.Listen));
@@ -24,7 +24,7 @@ namespace SmogonBattleSimulator.NET.UnitTests.Events
             Assert.False(bus.Subscribe<TestEvent>(listener.Listen));
             Assert.False(listener.Handled);
 
-            bus.Send(@event);
+            bus.Raise(@event);
 
             Assert.True(listener.Handled);
 
@@ -32,7 +32,7 @@ namespace SmogonBattleSimulator.NET.UnitTests.Events
 
             Assert.False(listener.Handled);
 
-            bus.Send(@event);
+            bus.Raise(@event);
 
             Assert.True(listener.Handled);
 
@@ -43,7 +43,7 @@ namespace SmogonBattleSimulator.NET.UnitTests.Events
             Assert.False(bus.Unsubscribe<TestEvent>(listener.Listen));
             Assert.False(listener.Handled);
 
-            bus.Send(@event);
+            bus.Raise(@event);
 
             Assert.False(listener.Handled);
         }

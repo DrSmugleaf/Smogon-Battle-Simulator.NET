@@ -33,7 +33,7 @@ namespace SmogonBattleSimulator.NET.Generations.I.Events
             _listeners.Clear();
         }
 
-        public void Send(IEvent @event)
+        public void Raise(IEvent @event)
         {
             if (_listeners.TryGetValue(@event.GetType(), out var listeners))
             {

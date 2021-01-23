@@ -1,5 +1,5 @@
 ﻿using SmogonBattleSimulator.NET.Collections.IndexedSet;
-using SmogonBattleSimulator.NET.Generations.I.Pokemon;
+using SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle;
 
 namespace SmogonBattleSimulator.NET.Generations.I.Trainer
 {
