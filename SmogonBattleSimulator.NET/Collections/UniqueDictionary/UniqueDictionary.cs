@@ -37,7 +37,7 @@ namespace SmogonBattleSimulator.NET.Collections.UniqueDictionary
 
         bool IDictionary.IsFixedSize => ((IDictionary) _dictionary).IsFixedSize;
 
-        public bool IsReadOnly => ((IDictionary) _dictionary).IsReadOnly;
+        bool IDictionary.IsReadOnly => ((IDictionary) _dictionary).IsReadOnly;
 
         object? IDictionary.this[object key]
         {

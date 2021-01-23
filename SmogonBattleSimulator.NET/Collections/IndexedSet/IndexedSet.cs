@@ -42,18 +42,18 @@ namespace SmogonBattleSimulator.NET.Collections.IndexedSet
             return false;
         }
 
-        public void CopyTo(Array array, int index)
+        void ICollection.CopyTo(Array array, int index)
         {
             ((ICollection)_list).CopyTo(array, index);
         }
 
         public int Count => _list.Count;
 
-        public bool IsSynchronized => ((ICollection) _list).IsSynchronized;
+        bool ICollection.IsSynchronized => ((ICollection) _list).IsSynchronized;
 
-        public object SyncRoot => ((ICollection) _list).SyncRoot;
+        object ICollection.SyncRoot => ((ICollection) _list).SyncRoot;
 
-        public bool IsReadOnly => ((ICollection<T>) _set).IsReadOnly;
+        bool ICollection<T>.IsReadOnly => ((ICollection<T>) _set).IsReadOnly;
 
         public bool Add(T item)
         {

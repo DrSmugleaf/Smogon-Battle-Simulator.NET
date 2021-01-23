@@ -69,7 +69,7 @@ namespace SmogonBattleSimulator.NET.UnitTests.Collections.IndexedSet
             // ReSharper disable once CollectionNeverUpdated.Local
             var set = new IndexedSet<object>();
 
-            Assert.False(set.IsReadOnly);
+            Assert.False(((ICollection<object>) set).IsReadOnly);
         }
 
         [Test]
