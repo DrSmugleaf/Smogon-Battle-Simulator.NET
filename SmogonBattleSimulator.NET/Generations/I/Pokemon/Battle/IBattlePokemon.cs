@@ -12,19 +12,21 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon
 
         string Nickname { get; }
 
-        ISpeciesStat Health { get; }
+        int Level { get; }
 
-        ISpeciesStat Attack { get; }
+        IBattleStat Health { get; }
 
-        ISpeciesStat Defense { get; }
+        IBattleStat Attack { get; }
 
-        ISpeciesStat Special { get; }
+        IBattleStat Defense { get; }
 
-        ISpeciesStat Speed { get; }
+        IBattleStat Special { get; }
 
-        ISpeciesStat Evasion { get; }
+        IBattleStat Speed { get; }
 
-        ISpeciesStat Accuracy { get; }
+        IBattleStat Evasion { get; }
+
+        IBattleStat Accuracy { get; }
 
         decimal Weight { get; }
 
@@ -35,5 +37,13 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon
         IReadOnlyIndexedSet<IMove> Moves { get; }
 
         ITier Tier { get; }
+
+        bool HasType(IType type);
+
+        IBattleStat Stat(StatType ofType);
+
+        IBattleStat Stat(BattleStatType ofType);
+
+        void Damage(int amount);
     }
 }

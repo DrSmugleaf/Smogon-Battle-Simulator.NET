@@ -1,4 +1,5 @@
-﻿using SmogonBattleSimulator.NET.Generations.I.Pokemon.Species.Stat;
+﻿using SmogonBattleSimulator.NET.Generations.I.Pokemon;
+using SmogonBattleSimulator.NET.Generations.I.Pokemon.Species.Stat;
 
 namespace SmogonBattleSimulator.NET.Generations.I.Move.Category
 {
@@ -6,8 +7,8 @@ namespace SmogonBattleSimulator.NET.Generations.I.Move.Category
     {
         string Name { get; }
 
-        ISpeciesStat AttackStat { get; }
+        IBattleStat AttackStat(IBattlePokemon attacker);
 
-        ISpeciesStat DefenseStat { get; }
+        IBattleStat DefenseStat(IBattlePokemon defender);
     }
 }

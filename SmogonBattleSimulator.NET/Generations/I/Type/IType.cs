@@ -11,5 +11,9 @@ namespace SmogonBattleSimulator.NET.Generations.I.Type
         IReadOnlyDictionary<IType, decimal> AttackEffectiveness { get; }
 
         IReadOnlyDictionary<IType, decimal> DefenseEffectiveness { get; }
+
+        decimal GetAttackEffectiveness(IType against);
+
+        decimal GetDefenseEffectiveness(IType against);
     }
 }

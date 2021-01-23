@@ -4,8 +4,6 @@ namespace SmogonBattleSimulator.NET.Generations.I.Move.Effect
 {
     public interface IEffect
     {
-        string Id { get; }
-
-        void Use(IEffectContext pokemon);
+        void Use(IEffectContext context);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SmogonBattleSimulator.NET.Extensions;
 
 namespace SmogonBattleSimulator.NET.Generations.I.Type
 {
@@ -23,5 +24,15 @@ namespace SmogonBattleSimulator.NET.Generations.I.Type
         public IReadOnlyDictionary<IType, decimal> AttackEffectiveness { get; }
 
         public IReadOnlyDictionary<IType, decimal> DefenseEffectiveness { get; }
+
+        public decimal GetAttackEffectiveness(IType against)
+        {
+            return AttackEffectiveness.GetValueOrNull(against) ?? 1;
+        }
+
+        public decimal GetDefenseEffectiveness(IType against)
+        {
+            return DefenseEffectiveness.GetValueOrNull(against) ?? 1;
+        }
     }
 }

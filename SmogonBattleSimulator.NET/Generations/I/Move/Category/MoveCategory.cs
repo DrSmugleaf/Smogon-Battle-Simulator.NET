@@ -1,20 +1,31 @@
-﻿using SmogonBattleSimulator.NET.Generations.I.Pokemon.Species.Stat;
+﻿using SmogonBattleSimulator.NET.Generations.I.Pokemon;
+using SmogonBattleSimulator.NET.Generations.I.Pokemon.Species.Stat;
 
 namespace SmogonBattleSimulator.NET.Generations.I.Move.Category
 {
     public class MoveCategory : IMoveCategory
     {
-        public MoveCategory(string name, ISpeciesStat attackStat, ISpeciesStat defenseStat)
+        public MoveCategory(string name, StatType attackStat, StatType defenseStat)
         {
             Name = name;
-            AttackStat = attackStat;
-            DefenseStat = defenseStat;
+            AttackStatType = attackStat;
+            DefenseStatType = defenseStat;
         }
 
         public string Name { get; }
 
-        public ISpeciesStat AttackStat { get; }
+        public StatType AttackStatType { get; }
 
-        public ISpeciesStat DefenseStat { get; }
+        public StatType DefenseStatType { get; }
+
+        public IBattleStat AttackStat(IBattlePokemon attacker)
+        {
+            return attacker.Stat(AttackStatType);
+        }
+
+        public IBattleStat DefenseStat(IBattlePokemon defender)
+        {
+            return defender.Stat(DefenseStatType);
+        }
     }
 }

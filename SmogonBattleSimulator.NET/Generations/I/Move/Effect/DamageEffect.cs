@@ -1,0 +1,17 @@
+﻿using SmogonBattleSimulator.NET.Generations.I.Move.Effect.Context;
+
+namespace SmogonBattleSimulator.NET.Generations.I.Move.Effect
+{
+    [Effect(1)]
+    public class DamageEffect : IEffect
+    {
+        public void Use(IEffectContext context)
+        {
+            foreach (var target in context.Targets)
+            {
+                var damage = context.Battle.Formula.DamageDealt(context, target);
+                target.Damage(damage);
+            }
+        }
+    }
+}
