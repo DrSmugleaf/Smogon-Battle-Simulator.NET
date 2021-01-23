@@ -1,4 +1,5 @@
 ﻿using SmogonBattleSimulator.NET.Collections.IndexedSet;
+using SmogonBattleSimulator.NET.Generations.I.Events;
 using SmogonBattleSimulator.NET.Generations.I.Formulas;
 using SmogonBattleSimulator.NET.Generations.I.Generation;
 using SmogonBattleSimulator.NET.Generations.I.RandomProvider;
@@ -10,17 +11,18 @@ namespace SmogonBattleSimulator.NET.Generations.I.Battle
     {
         public Battle(IGeneration generation, IReadOnlyIndexedSet<ITrainer> trainers)
         {
-            RandomProvider = new RandomProvider.RandomGenerator();
             Generation = generation;
             Trainers = trainers;
         }
 
-        public IRandomProvider RandomProvider { get; }
-
-        public IFormula Formula { get; } = new Formula();
-
         public IGeneration Generation { get; }
 
         public IReadOnlyIndexedSet<ITrainer> Trainers { get; }
+
+        public IRandomProvider RandomProvider { get; } = new RandomGenerator();
+
+        public IFormula Formula { get; } = new Formula();
+
+        public IEventBus EventBus { get; } = new EventBus();
     }
 }

@@ -8,5 +8,16 @@ namespace SmogonBattleSimulator.NET.Extensions
         {
             return dictionary.TryGetValue(key, out var value) ? value : null;
         }
+
+        public static V GetOrCreate<K, V>(this IDictionary<K, V> dictionary, K key) where V : new()
+        {
+            if (!dictionary.TryGetValue(key, out var value))
+            {
+                value = new V();
+                dictionary[key] = value;
+            }
+
+            return value;
+        }
     }
 }
