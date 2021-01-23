@@ -7,11 +7,11 @@ namespace SmogonBattleSimulator.NET.Generations.I.Move.Effect
     [BaseTypeRequired(typeof(IEffect))]
     public class EffectAttribute : Attribute
     {
-        public EffectAttribute(int id)
+        public EffectAttribute(string name)
         {
-            Id = id;
+            Name = name;
         }
 
-        public int Id { get; }
+        public string Name { get; }
     }
 }

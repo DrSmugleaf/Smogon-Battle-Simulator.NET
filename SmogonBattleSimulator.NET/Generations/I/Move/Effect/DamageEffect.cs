@@ -2,8 +2,8 @@
 
 namespace SmogonBattleSimulator.NET.Generations.I.Move.Effect
 {
-    [Effect(1)]
-    public class DamageEffect : IEffect
+    [Effect("Damage")]
+    public class DamageEffect : BaseEffect
     {
         public void Use(IEffectContext context)
         {

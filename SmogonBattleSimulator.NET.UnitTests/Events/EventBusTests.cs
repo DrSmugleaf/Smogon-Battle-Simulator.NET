@@ -5,7 +5,7 @@ namespace SmogonBattleSimulator.NET.UnitTests.Events
 {
     [TestFixture]
     [TestOf(typeof(EventBus))]
-    public class EventBusTests
+    public class EventBusTests : BaseUnitTest
     {
         [Test]
         public void SubscribeTest()

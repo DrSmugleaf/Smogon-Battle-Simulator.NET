@@ -1,9 +1,15 @@
-﻿using SmogonBattleSimulator.NET.Generations.I.Move.Effect.Context;
+﻿using System.Collections.Immutable;
+using SmogonBattleSimulator.NET.Generations.I.Events;
+using SmogonBattleSimulator.NET.Generations.I.Move.Effect.Context;
 
 namespace SmogonBattleSimulator.NET.Generations.I.Move.Effect
 {
     public interface IEffect
     {
-        void Use(IEffectContext context);
+        void OnEventBusCreation(EventBus eventBus);
+
+        ImmutableHashSet<EffectFlag> EffectFlags { get; }
+
+        virtual void Use(IEffectContext context) { }
     }
 }
