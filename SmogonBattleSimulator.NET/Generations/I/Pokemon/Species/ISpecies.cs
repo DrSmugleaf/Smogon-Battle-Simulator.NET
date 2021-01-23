@@ -7,6 +7,8 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Species
 {
     public interface ISpecies
     {
+        int Id { get; }
+
         string Name { get; }
 
         ISpeciesStat Health { get; }
@@ -23,9 +25,9 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Species
 
         decimal Height { get; }
 
-        IIndexedSet<IType> Types { get; }
+        IReadOnlyIndexedSet<IType> Types { get; }
 
-        IIndexedSet<IMove> Moves { get; }
+        IReadOnlyIndexedSet<IMove> Moves { get; }
 
         ITier Tier { get; }
     }

@@ -30,9 +30,9 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon
 
         decimal Height { get; }
 
-        IIndexedSet<IType> Types { get; }
+        IReadOnlyIndexedSet<IType> Types { get; }
 
-        IIndexedSet<IMove> Moves { get; }
+        IReadOnlyIndexedSet<IMove> Moves { get; }
 
         ITier Tier { get; }
     }

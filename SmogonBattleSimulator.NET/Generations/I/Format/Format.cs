@@ -10,9 +10,9 @@ namespace SmogonBattleSimulator.NET.Generations.I.Format
         public Format(
             string name,
             string description,
-            IIndexedSet<IClause> clauses,
-            IIndexedSet<IMod> mods,
-            IIndexedSet<IRestriction> restrictions)
+            IReadOnlyIndexedSet<IClause> clauses,
+            IReadOnlyIndexedSet<IMod> mods,
+            IReadOnlyIndexedSet<IRestriction> restrictions)
         {
             Name = name;
             Description = description;
@@ -25,10 +25,10 @@ namespace SmogonBattleSimulator.NET.Generations.I.Format
 
         public string Description { get; }
 
-        public IIndexedSet<IClause> Clauses { get; }
+        public IReadOnlyIndexedSet<IClause> Clauses { get; }
 
-        public IIndexedSet<IMod> Mods { get; }
+        public IReadOnlyIndexedSet<IMod> Mods { get; }
 
-        public IIndexedSet<IRestriction> Restrictions { get; }
+        public IReadOnlyIndexedSet<IRestriction> Restrictions { get; }
     }
 }

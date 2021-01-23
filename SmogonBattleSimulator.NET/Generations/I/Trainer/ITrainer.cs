@@ -7,6 +7,6 @@ namespace SmogonBattleSimulator.NET.Generations.I.Trainer
     {
         string Name { get; }
 
-        IIndexedSet<IBattlePokemon> Pokemons { get; }
+        IReadOnlyIndexedSet<IBattlePokemon> Pokemons { get; }
     }
 }

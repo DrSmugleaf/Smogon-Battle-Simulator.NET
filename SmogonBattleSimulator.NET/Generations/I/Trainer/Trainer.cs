@@ -5,7 +5,7 @@ namespace SmogonBattleSimulator.NET.Generations.I.Trainer
 {
     public class Trainer : ITrainer
     {
-        public Trainer(string name, IIndexedSet<IBattlePokemon> pokemons)
+        public Trainer(string name, IReadOnlyIndexedSet<IBattlePokemon> pokemons)
         {
             Name = name;
             Pokemons = pokemons;
@@ -13,6 +13,6 @@ namespace SmogonBattleSimulator.NET.Generations.I.Trainer
 
         public string Name { get; }
 
-        public IIndexedSet<IBattlePokemon> Pokemons { get; }
+        public IReadOnlyIndexedSet<IBattlePokemon> Pokemons { get; }
     }
 }

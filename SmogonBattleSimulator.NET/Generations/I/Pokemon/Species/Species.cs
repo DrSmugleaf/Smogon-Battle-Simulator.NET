@@ -8,6 +8,7 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Species
     public class Species : ISpecies
     {
         public Species(
+            int id,
             string name,
             ISpeciesStat health,
             ISpeciesStat attack,
@@ -16,10 +17,11 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Species
             ISpeciesStat speed,
             decimal weight,
             decimal height,
-            IIndexedSet<IType> types,
-            IIndexedSet<IMove> moves,
+            IReadOnlyIndexedSet<IType> types,
+            IReadOnlyIndexedSet<IMove> moves,
             ITier tier)
         {
+            Id = id;
             Name = name;
             Health = health;
             Attack = attack;
@@ -33,6 +35,7 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Species
             Tier = tier;
         }
 
+        public int Id { get; }
         public string Name { get; }
 
         public ISpeciesStat Health { get; }
@@ -49,9 +52,9 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Species
 
         public decimal Height { get; }
 
-        public IIndexedSet<IType> Types { get; }
+        public IReadOnlyIndexedSet<IType> Types { get; }
 
-        public IIndexedSet<IMove> Moves { get; }
+        public IReadOnlyIndexedSet<IMove> Moves { get; }
 
         public ITier Tier { get; }
     }

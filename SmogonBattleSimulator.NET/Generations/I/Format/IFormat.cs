@@ -11,10 +11,10 @@ namespace SmogonBattleSimulator.NET.Generations.I.Format
 
         string Description { get; }
 
-        IIndexedSet<IClause> Clauses { get; }
+        IReadOnlyIndexedSet<IClause> Clauses { get; }
 
-        IIndexedSet<IMod> Mods { get; }
+        IReadOnlyIndexedSet<IMod> Mods { get; }
 
-        IIndexedSet<IRestriction> Restrictions { get; }
+        IReadOnlyIndexedSet<IRestriction> Restrictions { get; }
     }
 }

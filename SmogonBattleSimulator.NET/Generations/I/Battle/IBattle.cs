@@ -5,6 +5,6 @@ namespace SmogonBattleSimulator.NET.Generations.I.Battle
 {
     public interface IBattle
     {
-        IIndexedSet<ITrainer> Trainers { get; }
+        IReadOnlyIndexedSet<ITrainer> Trainers { get; }
     }
 }

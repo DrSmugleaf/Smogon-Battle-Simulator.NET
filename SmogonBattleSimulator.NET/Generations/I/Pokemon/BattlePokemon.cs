@@ -20,8 +20,8 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon
             ISpeciesStat accuracy,
             decimal weight,
             decimal height,
-            IIndexedSet<IType> types,
-            IIndexedSet<IMove> moves,
+            IReadOnlyIndexedSet<IType> types,
+            IReadOnlyIndexedSet<IMove> moves,
             ITier tier)
         {
             Name = name;
@@ -62,9 +62,9 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon
 
         public decimal Height { get; }
 
-        public IIndexedSet<IType> Types { get; }
+        public IReadOnlyIndexedSet<IType> Types { get; }
 
-        public IIndexedSet<IMove> Moves { get; }
+        public IReadOnlyIndexedSet<IMove> Moves { get; }
 
         public ITier Tier { get; }
     }
