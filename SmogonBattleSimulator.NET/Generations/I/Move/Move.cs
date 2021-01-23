@@ -1,4 +1,5 @@
-﻿using SmogonBattleSimulator.NET.Generations.I.Type;
+﻿using SmogonBattleSimulator.NET.Generations.I.Move.Category;
+using SmogonBattleSimulator.NET.Generations.I.Type;
 
 namespace SmogonBattleSimulator.NET.Generations.I.Move
 {

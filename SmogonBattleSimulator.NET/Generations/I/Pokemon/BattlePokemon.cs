@@ -1,6 +1,6 @@
 ﻿using SmogonBattleSimulator.NET.Collections.IndexedSet;
 using SmogonBattleSimulator.NET.Generations.I.Move;
-using SmogonBattleSimulator.NET.Generations.I.Pokemon.Species;
+using SmogonBattleSimulator.NET.Generations.I.Pokemon.Species.Stat;
 using SmogonBattleSimulator.NET.Generations.I.Pokemon.Species.Tier;
 using SmogonBattleSimulator.NET.Generations.I.Type;
 

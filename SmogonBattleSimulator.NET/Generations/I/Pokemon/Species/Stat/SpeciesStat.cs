@@ -1,4 +1,4 @@
-﻿namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Species
+﻿namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Species.Stat
 {
     public class SpeciesStat : ISpeciesStat
     {

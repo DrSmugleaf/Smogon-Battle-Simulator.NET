@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using SmogonBattleSimulator.NET.Collections.UniqueDictionary;
-using SmogonBattleSimulator.NET.Generations.I.Pokemon.Species;
 
-namespace SmogonBattleSimulator.NET.Generations.I.Generation.Registry
+namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Species.Pokedex
 {
     public interface IPokedex
     {
