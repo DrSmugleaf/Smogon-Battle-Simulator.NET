@@ -1,4 +1,6 @@
-﻿namespace SmogonBattleSimulator.NET.Generations.I.Type
+﻿using System.Collections.Generic;
+
+namespace SmogonBattleSimulator.NET.Generations.I.Type
 {
     public interface IType
     {
@@ -6,8 +8,8 @@
 
         string Description { get; }
 
-        decimal GetAttackEffectiveness(IType towards);
+        IReadOnlyDictionary<IType, decimal> AttackEffectiveness { get; }
 
-        decimal GetDefenseEffectiveness(IType against);
+        IReadOnlyDictionary<IType, decimal> DefenseEffectiveness { get; }
     }
 }
