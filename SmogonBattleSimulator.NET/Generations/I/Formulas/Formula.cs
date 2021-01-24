@@ -70,7 +70,7 @@ namespace SmogonBattleSimulator.NET.Generations.I.Formulas
             context.Battle.EventBus.Raise(@event);
 
             var multiplier = @event.Multiplier;
-            var t = (int) (context.User.Speed.Value * multiplier / 2);
+            var t = (int) (context.User.Speed.Value / 2M * multiplier);
             var tByte = (byte) Math.Clamp(t, byte.MinValue, byte.MaxValue);
             var threshold = context.Battle.RandomProvider.RandomByte();
 
