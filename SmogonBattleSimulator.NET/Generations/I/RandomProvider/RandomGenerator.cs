@@ -40,5 +40,12 @@ namespace SmogonBattleSimulator.NET.Generations.I.RandomProvider
         {
             return (decimal) RandomDouble((double) min, (double) max);
         }
+
+        public byte RandomByte()
+        {
+            var bytes = new byte[1];
+            _random.NextBytes(bytes);
+            return bytes[0];
+        }
     }
 }

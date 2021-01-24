@@ -1,4 +1,5 @@
-﻿using SmogonBattleSimulator.NET.Generations.I.Move.Effect.Context;
+﻿using System;
+using SmogonBattleSimulator.NET.Generations.I.Move.Effect.Context;
 using SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle;
 using SmogonBattleSimulator.NET.Generations.I.RandomProvider;
 using SmogonBattleSimulator.NET.Generations.I.Type;
@@ -52,14 +53,28 @@ namespace SmogonBattleSimulator.NET.Generations.I.Formulas
 
         public int DamageDealt(IEffectContext context, IBattlePokemon target)
         {
-            // TODO crit
-            var level = context.User.Level;
+            var crit = CriticalStrike(context);
+            var level = crit ? context.User.Level * 2 : context.User.Level;
             var power = context.Move.Power;
             var attack = context.Move.Category.AttackStat(target);
             var defense = context.Move.Category.DefenseStat(target);
             var modifier = Multiplier(context, target);
 
             return (int) (((2 * level / 5 + 2) * power * (attack.Value / defense.Value) / 50 + 2) * modifier);
+        }
+
+        public bool CriticalStrike(IEffectContext context)
+        {
+            var @event = new CriticalRatioEvent();
+
+            context.Battle.EventBus.Raise(@event);
+
+            var multiplier = @event.Multiplier;
+            var t = (int) (context.User.Speed.Value * multiplier / 2);
+            var tByte = (byte) Math.Clamp(t, byte.MinValue, byte.MaxValue);
+            var threshold = context.Battle.RandomProvider.RandomByte();
+
+            return tByte < threshold;
         }
     }
 }

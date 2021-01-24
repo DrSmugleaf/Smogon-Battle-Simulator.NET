@@ -9,5 +9,7 @@
         double RandomDouble(double min, double max);
 
         decimal RandomDecimal(decimal min, decimal max);
+
+        byte RandomByte();
     }
 }
