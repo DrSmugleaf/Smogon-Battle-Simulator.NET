@@ -3,6 +3,7 @@ using System.Collections.Immutable;
 using System.Reflection;
 using SmogonBattleSimulator.NET.Extensions;
 using SmogonBattleSimulator.NET.Generations.I.Events;
+using SmogonBattleSimulator.NET.Generations.I.Move.Effect.Context;
 
 namespace SmogonBattleSimulator.NET.Generations.I.Move.Effect
 {
@@ -43,5 +44,7 @@ namespace SmogonBattleSimulator.NET.Generations.I.Move.Effect
                 subscribeMethod.Invoke(eventBus, new object?[] {@delegate});
             }
         }
+
+        public virtual void Use(IEffectContext context) { }
     }
 }

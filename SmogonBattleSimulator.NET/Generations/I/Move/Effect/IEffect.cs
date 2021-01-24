@@ -10,6 +10,6 @@ namespace SmogonBattleSimulator.NET.Generations.I.Move.Effect
 
         ImmutableHashSet<EffectFlag> EffectFlags { get; }
 
-        virtual void Use(IEffectContext context) { }
+        void Use(IEffectContext context);
     }
 }

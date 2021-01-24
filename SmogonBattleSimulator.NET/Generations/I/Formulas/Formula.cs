@@ -51,7 +51,7 @@ namespace SmogonBattleSimulator.NET.Generations.I.Formulas
 
         // TODO OtherMultiplier
 
-        public int DamageDealt(IEffectContext context, IBattlePokemon target)
+        public int DamageDealt(IEffectContext context, IBattlePokemon target, bool canCrit = true)
         {
             var crit = CriticalStrike(context);
             var level = crit ? context.User.Level * 2 : context.User.Level;

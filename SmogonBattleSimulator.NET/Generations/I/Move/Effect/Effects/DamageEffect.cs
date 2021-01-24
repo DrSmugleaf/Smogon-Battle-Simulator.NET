@@ -5,7 +5,7 @@ namespace SmogonBattleSimulator.NET.Generations.I.Move.Effect.Effects
     [Effect("Damage")]
     public class DamageEffect : BaseEffect
     {
-        public void Use(IEffectContext context)
+        public override void Use(IEffectContext context)
         {
             foreach (var target in context.Targets)
             {

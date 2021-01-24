@@ -5,6 +5,6 @@ namespace SmogonBattleSimulator.NET.Generations.I.Formulas
 {
     public interface IFormula
     {
-        int DamageDealt(IEffectContext context, IBattlePokemon target);
+        int DamageDealt(IEffectContext context, IBattlePokemon target, bool canCrit = true);
     }
 }

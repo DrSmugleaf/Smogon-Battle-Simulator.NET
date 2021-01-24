@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 namespace SmogonBattleSimulator.NET.Generations.I.Move.Effect
 {
     [AttributeUsage(AttributeTargets.Class)]
-    [BaseTypeRequired(typeof(IEffect))]
+    [BaseTypeRequired(typeof(BaseEffect))]
     [MeansImplicitUse]
     public class EffectAttribute : Attribute
     {

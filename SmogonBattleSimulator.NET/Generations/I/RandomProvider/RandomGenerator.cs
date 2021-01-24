@@ -16,14 +16,34 @@ namespace SmogonBattleSimulator.NET.Generations.I.RandomProvider
             _random = new Random();
         }
 
-        public int RandomInteger(int min, int max)
+        public int RandomInteger(int maxExclusive)
         {
-            return _random.Next(min, max);
+            if (maxExclusive < 0)
+            {
+                throw new ArgumentOutOfRangeException($"Min (0) cannot be bigger than max ({maxExclusive})");
+            }
+
+            return _random.Next(maxExclusive);
+        }
+
+        public int RandomInteger(int minInclusive, int maxExclusive)
+        {
+            if (minInclusive > maxExclusive)
+            {
+                throw new ArgumentOutOfRangeException($"Min ({minInclusive}) cannot be bigger than max ({maxExclusive})");
+            }
+
+            return _random.Next(minInclusive, maxExclusive);
         }
 
         public float RandomFloat(float min, float max)
         {
             return (float) RandomDouble(min, max);
+        }
+
+        public double RandomDouble()
+        {
+            return _random.NextDouble();
         }
 
         public double RandomDouble(double min, double max)
@@ -33,7 +53,7 @@ namespace SmogonBattleSimulator.NET.Generations.I.RandomProvider
                 throw new ArgumentOutOfRangeException($"Min ({min}) cannot be bigger than max ({max})");
             }
 
-            return _random.NextDouble() * (max - min) + min;
+            return RandomDouble() * (max - min) + min;
         }
 
         public decimal RandomDecimal(decimal min, decimal max)

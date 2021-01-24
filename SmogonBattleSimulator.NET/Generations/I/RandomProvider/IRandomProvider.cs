@@ -2,9 +2,13 @@
 {
     public interface IRandomProvider
     {
-        int RandomInteger(int min, int max);
+        int RandomInteger(int maxExclusive);
+
+        int RandomInteger(int minInclusive, int maxExclusive);
 
         float RandomFloat(float min, float max);
+
+        double RandomDouble();
 
         double RandomDouble(double min, double max);
 
