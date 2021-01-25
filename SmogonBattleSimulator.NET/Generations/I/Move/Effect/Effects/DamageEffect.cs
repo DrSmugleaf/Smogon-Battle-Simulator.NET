@@ -9,7 +9,7 @@ namespace SmogonBattleSimulator.NET.Generations.I.Move.Effect.Effects
         {
             foreach (var target in context.Targets)
             {
-                var damage = context.Battle.Formula.DamageDealt(context, target);
+                var damage = context.Battle.DamageFormula.DamageDealt(context, target);
                 target.Damage(damage);
             }
         }

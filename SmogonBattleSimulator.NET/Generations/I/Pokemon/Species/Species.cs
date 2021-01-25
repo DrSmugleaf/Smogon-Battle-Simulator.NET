@@ -37,6 +37,7 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Species
         }
 
         public int Id { get; }
+
         public string Name { get; }
 
         public ISpeciesStat Health { get; }

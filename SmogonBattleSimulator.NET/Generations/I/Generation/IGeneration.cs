@@ -1,4 +1,5 @@
 ﻿using SmogonBattleSimulator.NET.Generations.I.Format.Registry;
+using SmogonBattleSimulator.NET.Generations.I.Formulas;
 using SmogonBattleSimulator.NET.Generations.I.Pokemon.Species.Pokedex;
 
 namespace SmogonBattleSimulator.NET.Generations.I.Generation
@@ -12,5 +13,9 @@ namespace SmogonBattleSimulator.NET.Generations.I.Generation
         IPokedex Pokedex { get; }
 
         IFormatRegistry FormatRegistry { get; }
+
+        IDamageFormula DamageFormula { get; }
+
+        IStatFormula StatFormula { get; }
     }
 }

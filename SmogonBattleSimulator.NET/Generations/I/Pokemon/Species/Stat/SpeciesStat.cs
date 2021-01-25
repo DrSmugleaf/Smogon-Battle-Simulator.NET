@@ -2,13 +2,13 @@
 {
     public class SpeciesStat : ISpeciesStat
     {
-        public SpeciesStat(string name, int value)
+        public SpeciesStat(StatType type, int value)
         {
-            Name = name;
+            StatType = type;
             Value = value;
         }
 
-        public string Name { get; }
+        public StatType StatType { get; }
 
         public int Value { get; }
     }

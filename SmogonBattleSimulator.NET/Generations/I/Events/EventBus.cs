@@ -8,15 +8,26 @@ namespace SmogonBattleSimulator.NET.Generations.I.Events
     {
         private readonly Dictionary<System.Type, HashSet<Delegate>> _listeners = new();
 
-        public bool Subscribe<T>(EventHandler<T> handler) where T : IEvent
+        public bool Subscribe<T>(EventListener<T> listener) where T : IEvent
         {
             var type = typeof(T);
             var listeners = _listeners.GetOrCreate(type);
 
-            return listeners.Add(handler);
+            return listeners.Add(listener);
         }
 
-        public bool Unsubscribe<T>(EventHandler<T> handler) where T : IEvent
+        public bool Subscribe(System.Type type, Delegate listener)
+        {
+            if (listener.GetType() != typeof(EventHandler<>))
+            {
+                throw new ArgumentException($"Listener is not of type {typeof(EventHandler<>)}");
+            }
+
+            var listeners = _listeners.GetOrCreate(type);
+            return listeners.Add(listener);
+        }
+
+        public bool Unsubscribe<T>(EventListener<T> listener) where T : IEvent
         {
             var type = typeof(T);
 
@@ -25,7 +36,17 @@ namespace SmogonBattleSimulator.NET.Generations.I.Events
                 return false;
             }
 
-            return listeners.Remove(handler);
+            return listeners.Remove(listener);
+        }
+
+        public bool Unsubscribe(System.Type type, Delegate @delegate)
+        {
+            if (!_listeners.TryGetValue(type, out var listeners))
+            {
+                return false;
+            }
+
+            return listeners.Remove(@delegate);
         }
 
         public void Clear()

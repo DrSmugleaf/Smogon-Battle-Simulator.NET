@@ -2,7 +2,7 @@
 {
     public interface ISpeciesStat
     {
-        string Name { get; }
+        StatType StatType { get; }
 
         int Value { get; }
     }

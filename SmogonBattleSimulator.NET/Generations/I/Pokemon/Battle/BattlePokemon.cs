@@ -5,6 +5,7 @@ using SmogonBattleSimulator.NET.Generations.I.Move;
 using SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle.Stat;
 using SmogonBattleSimulator.NET.Generations.I.Pokemon.Species.Stat;
 using SmogonBattleSimulator.NET.Generations.I.Pokemon.Species.Tier;
+using SmogonBattleSimulator.NET.Generations.I.Status.NonVolatile;
 using SmogonBattleSimulator.NET.Generations.I.Type;
 
 namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle
@@ -51,6 +52,8 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle
 
         public int Level { get; }
 
+        public int CurrentHealth { get; private set; }
+
         public IBattleStat Health { get; }
 
         public IBattleStat Attack { get; }
@@ -74,6 +77,8 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle
         public IReadOnlyIndexedSet<IMove> Moves { get; }
 
         public ITier Tier { get; }
+
+        public INonVolatileStatus? NonVolatileStatus { get; set; }
 
         public bool HasType(IType type)
         {
@@ -105,13 +110,18 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle
 
         public void Damage(int amount)
         {
-            if (Health.Value - amount < 0)
+            if (CurrentHealth - amount < 0)
             {
-                Health.Value = 0;
+                CurrentHealth = 0;
                 return;
             }
 
-            Health.Value -= amount;
+            CurrentHealth -= amount;
+        }
+
+        public void DamagePercentage(decimal percentage)
+        {
+            Damage((int) (Health.ModifiedValue * percentage));
         }
     }
 }

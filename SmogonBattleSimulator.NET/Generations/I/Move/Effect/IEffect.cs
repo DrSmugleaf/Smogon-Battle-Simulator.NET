@@ -6,7 +6,7 @@ namespace SmogonBattleSimulator.NET.Generations.I.Move.Effect
 {
     public interface IEffect
     {
-        void OnEventBusCreation(EventBus eventBus);
+        void OnEventBusCreation(IEventBus eventBus);
 
         ImmutableHashSet<EffectFlag> EffectFlags { get; }
 

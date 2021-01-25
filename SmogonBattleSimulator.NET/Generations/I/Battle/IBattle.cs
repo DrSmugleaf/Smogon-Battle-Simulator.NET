@@ -15,7 +15,9 @@ namespace SmogonBattleSimulator.NET.Generations.I.Battle
 
         IRandomProvider RandomProvider { get; }
 
-        IFormula Formula { get; }
+        IDamageFormula DamageFormula { get; }
+
+        IStatFormula StatFormula { get; }
 
         IEventBus EventBus { get; }
 

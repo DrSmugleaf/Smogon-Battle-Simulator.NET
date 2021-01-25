@@ -2,6 +2,11 @@
 {
     public enum BattleStatType
     {
+        Health,
+        Attack,
+        Defense,
+        Special,
+        Speed,
         Evasion,
         Accuracy
     }

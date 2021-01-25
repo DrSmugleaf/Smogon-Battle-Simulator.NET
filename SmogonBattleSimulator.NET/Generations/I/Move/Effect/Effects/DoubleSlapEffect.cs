@@ -20,12 +20,12 @@ namespace SmogonBattleSimulator.NET.Generations.I.Move.Effect.Effects
                 };
 
                 // Only the first strike can be a critical hit
-                var damage = context.Battle.Formula.DamageDealt(context, target);
+                var damage = context.Battle.DamageFormula.DamageDealt(context, target);
 
                 target.Damage(damage);
 
                 // Successive hits deal the same amount of damage
-                damage = context.Battle.Formula.DamageDealt(context, target, false);
+                damage = context.Battle.DamageFormula.DamageDealt(context, target, false);
 
                 for (var i = 1; i < hits; i++)
                 {

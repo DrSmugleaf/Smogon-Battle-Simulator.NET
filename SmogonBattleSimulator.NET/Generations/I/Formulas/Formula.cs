@@ -1,12 +1,13 @@
 ﻿using System;
 using SmogonBattleSimulator.NET.Generations.I.Move.Effect.Context;
 using SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle;
+using SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle.Stat;
 using SmogonBattleSimulator.NET.Generations.I.RandomProvider;
 using SmogonBattleSimulator.NET.Generations.I.Type;
 
 namespace SmogonBattleSimulator.NET.Generations.I.Formulas
 {
-    public class Formula : IFormula
+    public class Formula : IDamageFormula, IStatFormula
     {
         public decimal TargetsMultiplier(int targetCount)
         {
@@ -60,7 +61,7 @@ namespace SmogonBattleSimulator.NET.Generations.I.Formulas
             var defense = context.Move.Category.DefenseStat(target);
             var modifier = Multiplier(context, target);
 
-            return (int) (((2 * level / 5 + 2) * power * (attack.Value / defense.Value) / 50 + 2) * modifier);
+            return (int) (((2 * level / 5 + 2) * power * (attack.ModifiedValue / defense.ModifiedValue) / 50 + 2) * modifier);
         }
 
         public bool CriticalStrike(IEffectContext context)
@@ -70,11 +71,52 @@ namespace SmogonBattleSimulator.NET.Generations.I.Formulas
             context.Battle.EventBus.Raise(@event);
 
             var multiplier = @event.Multiplier;
-            var t = (int) (context.User.Speed.Value / 2M * multiplier);
+            var t = (int) (context.User.Speed.ModifiedValue / 2M * multiplier);
             var tByte = (byte) Math.Clamp(t, byte.MinValue, byte.MaxValue);
             var threshold = context.Battle.RandomProvider.RandomByte();
 
             return tByte < threshold;
+        }
+
+        public int CalculateHp(int baseValue, int iv, int ev, int level)
+        {
+            // ReSharper disable once ArrangeRedundantParentheses
+            return (int) ((((baseValue + iv) * 2 + (Math.Sqrt(ev) / 4) * level) / 100) + level + 10);
+        }
+
+        public int CalculateHp(IBattleStat stat)
+        {
+            var baseValue = stat.BaseValue;
+            var iv = stat.IndividualValue;
+            var ev = stat.EffortValue;
+            var level = stat.Level;
+
+            return CalculateHp(baseValue, iv, ev, level);
+        }
+
+        public int CalculateOtherStat(int baseValue, int iv, int ev, int level)
+        {
+            return (int) (((baseValue + iv) * 2 + (Math.Sqrt(ev) / 4) * level) / 100 + 5);
+        }
+
+        public int CalculateOtherStat(IBattleStat stat)
+        {
+            var baseValue = stat.BaseValue;
+            var iv = stat.IndividualValue;
+            var ev = stat.EffortValue;
+            var level = stat.Level;
+
+            return CalculateOtherStat(baseValue, iv, ev, level);
+        }
+
+        public int CalculateStat(IBattleStat stat)
+        {
+            if (stat.StatType == BattleStatType.Health)
+            {
+                return CalculateHp(stat);
+            }
+
+            return CalculateOtherStat(stat);
         }
     }
 }
