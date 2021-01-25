@@ -18,9 +18,9 @@ namespace SmogonBattleSimulator.NET.Generations.I.Events
 
         public bool Subscribe(System.Type type, Delegate listener)
         {
-            if (listener.GetType() != typeof(EventHandler<>))
+            if (!listener.GetType().GetGenericTypeDefinition().IsAssignableFrom(typeof(EventListener<>)))
             {
-                throw new ArgumentException($"Listener is not of type {typeof(EventHandler<>)}");
+                throw new ArgumentException($"Listener is not of type {typeof(EventListener<>)}");
             }
 
             var listeners = _listeners.GetOrCreate(type);

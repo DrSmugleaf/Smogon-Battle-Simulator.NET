@@ -7,9 +7,9 @@ namespace SmogonBattleSimulator.NET.Generations.I.Events
 {
     public static class EventBusExtensions
     {
-        public static EventHandlerGroup GetEventHandlers<T>(this T instance)
+        public static EventHandlerGroup GetEventHandlers<T>(this T instance) where T : notnull
         {
-            var methods = typeof(T).GetMethods(
+            var methods = instance.GetType().GetMethods(
                 BindingFlags.Public |
                 BindingFlags.NonPublic |
                 BindingFlags.Instance |
@@ -44,7 +44,7 @@ namespace SmogonBattleSimulator.NET.Generations.I.Events
             return new EventHandlerGroup(handlers);
         }
 
-        public static EventHandlerGroup SubscribeEventHandlers<T>(this IEventBus bus, T instance)
+        public static EventHandlerGroup SubscribeEventHandlers<T>(this IEventBus bus, T instance) where T : notnull
         {
             var handlers = instance.GetEventHandlers();
 
