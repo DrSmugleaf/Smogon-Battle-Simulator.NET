@@ -2,7 +2,7 @@
 using SmogonBattleSimulator.NET.Generations.I.Events;
 using SmogonBattleSimulator.NET.Generations.I.Move.Events;
 using SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle;
-using SmogonBattleSimulator.NET.Generations.I.Pokemon.Species.Stat;
+using SmogonBattleSimulator.NET.Generations.I.Pokemon.Stat;
 
 namespace SmogonBattleSimulator.NET.Generations.I.Status.NonVolatile
 {
@@ -11,7 +11,7 @@ namespace SmogonBattleSimulator.NET.Generations.I.Status.NonVolatile
         public BurnStatus(IBattlePokemon pokemon, IEventBus eventBus) : base(pokemon, eventBus)
         {
             pokemon.NonVolatileStatus = this;
-            pokemon.Stat(StatType.Attack).AddMultiplier(0.5M);
+            pokemon.Stat(PermanentStatType.Attack).AddMultiplier(0.5M);
         }
 
         public override string Name => "Burn";

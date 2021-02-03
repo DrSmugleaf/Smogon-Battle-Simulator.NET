@@ -1,7 +1,7 @@
 ﻿using System;
 using SmogonBattleSimulator.NET.Generations.I.Move.Effect.Context;
 using SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle;
-using SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle.Stat;
+using SmogonBattleSimulator.NET.Generations.I.Pokemon.Stat;
 using SmogonBattleSimulator.NET.Generations.I.RandomProvider;
 using SmogonBattleSimulator.NET.Generations.I.Type;
 
@@ -84,7 +84,7 @@ namespace SmogonBattleSimulator.NET.Generations.I.Formulas
             return (int) ((((baseValue + iv) * 2 + (Math.Sqrt(ev) / 4) * level) / 100) + level + 10);
         }
 
-        public int CalculateHp(IBattleStat stat)
+        public int CalculateHp(IPermanentStat stat)
         {
             var baseValue = stat.BaseValue;
             var iv = stat.IndividualValue;
@@ -99,7 +99,7 @@ namespace SmogonBattleSimulator.NET.Generations.I.Formulas
             return (int) (((baseValue + iv) * 2 + (Math.Sqrt(ev) / 4) * level) / 100 + 5);
         }
 
-        public int CalculateOtherStat(IBattleStat stat)
+        public int CalculateStat(IPermanentStat stat)
         {
             var baseValue = stat.BaseValue;
             var iv = stat.IndividualValue;
@@ -109,14 +109,12 @@ namespace SmogonBattleSimulator.NET.Generations.I.Formulas
             return CalculateOtherStat(baseValue, iv, ev, level);
         }
 
-        public int CalculateStat(IBattleStat stat)
+        public int AccuracyThreshold(int moveAccuracy, decimal accuracyStage, decimal evasionStage, bool holdingBrightPowder)
         {
-            if (stat.StatType == BattleStatType.Health)
-            {
-                return CalculateHp(stat);
-            }
+            var brightPowder = holdingBrightPowder ? 20 : 0;
+            var t = (int) (moveAccuracy * accuracyStage * evasionStage - brightPowder);
 
-            return CalculateOtherStat(stat);
+            return Math.Clamp(t, 1, 255);
         }
     }
 }

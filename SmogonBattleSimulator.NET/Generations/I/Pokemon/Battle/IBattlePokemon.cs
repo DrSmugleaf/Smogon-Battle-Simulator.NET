@@ -1,8 +1,8 @@
 ﻿using SmogonBattleSimulator.NET.Collections.IndexedSet;
 using SmogonBattleSimulator.NET.Generations.I.Move;
 using SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle.Stat;
-using SmogonBattleSimulator.NET.Generations.I.Pokemon.Species.Stat;
 using SmogonBattleSimulator.NET.Generations.I.Pokemon.Species.Tier;
+using SmogonBattleSimulator.NET.Generations.I.Pokemon.Stat;
 using SmogonBattleSimulator.NET.Generations.I.Status.NonVolatile;
 using SmogonBattleSimulator.NET.Generations.I.Type;
 
@@ -12,25 +12,25 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle
     {
         string Name { get; }
 
-        string Nickname { get; }
+        string? Nickname { get; }
 
         int Level { get; }
 
         int CurrentHealth { get; }
 
-        IBattleStat Health { get; }
+        IPermanentStat Health { get; }
 
-        IBattleStat Attack { get; }
+        IPermanentStat Attack { get; }
 
-        IBattleStat Defense { get; }
+        IPermanentStat Defense { get; }
 
-        IBattleStat Special { get; }
+        IPermanentStat Special { get; }
 
-        IBattleStat Speed { get; }
-
-        IBattleStat Evasion { get; }
+        IPermanentStat Speed { get; }
 
         IBattleStat Accuracy { get; }
+
+        IBattleStat Evasion { get; }
 
         decimal Weight { get; }
 
@@ -46,7 +46,7 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle
 
         bool HasType(IType type);
 
-        IBattleStat Stat(StatType ofType);
+        IPermanentStat Stat(PermanentStatType ofType);
 
         IBattleStat Stat(BattleStatType ofType);
 

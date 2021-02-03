@@ -1,34 +1,43 @@
-﻿using SmogonBattleSimulator.NET.Extensions;
+﻿using System;
+using System.Collections.Generic;
+using JetBrains.Annotations;
 using SmogonBattleSimulator.NET.Generations.I.Formulas;
 
 namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle.Stat
 {
+    [PublicAPI]
     public class BattleStatBuilder
     {
-        public BattleStatBuilder(IStatFormula statFormula)
+        public BattleStatBuilder(IStatFormula formula)
         {
-            StatFormula = statFormula;
+            Formula = formula;
+            Modifiers = new List<decimal>();
         }
 
-        public IStatFormula StatFormula { get; }
+        public IStatFormula Formula { get; }
 
-        public int? BaseValue { get; set; }
-
-        public int? Level { get; set; }
-
-        public int? IndividualValue { get; set; }
-
-        public int? EffortValue { get; set;  }
+        public List<decimal> Modifiers { get; }
 
         public IBattleStat Build(BattleStatType type)
         {
-            return new BattleStat(
-                StatFormula,
-                type,
-                BaseValue.GetOrThrow(),
-                Level.GetOrThrow(),
-                IndividualValue.GetOrThrow(),
-                EffortValue.GetOrThrow());
+            return new BattleStat(Formula, type, Modifiers);
+        }
+
+        public Dictionary<BattleStatType, IBattleStat> BuildAllStats()
+        {
+            var stats = new Dictionary<BattleStatType, IBattleStat>();
+
+            foreach (var type in Enum.GetValues<BattleStatType>())
+            {
+                stats[type] = Build(type);
+            }
+
+            return stats;
+        }
+
+        public BattleStatCollection BuildCollection()
+        {
+            return new(BuildAllStats());
         }
     }
 }

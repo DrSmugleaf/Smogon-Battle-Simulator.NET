@@ -9,15 +9,7 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle.Stat
 
         BattleStatType StatType { get; }
 
-        int BaseValue { get; }
-
-        int Level { get; set; }
-
-        int IndividualValue { get; }
-
-        int EffortValue { get; }
-
-        int ModifiedValue { get; }
+        decimal Value { get; }
 
         IModifierToken AddMultiplier(decimal multiplier);
     }

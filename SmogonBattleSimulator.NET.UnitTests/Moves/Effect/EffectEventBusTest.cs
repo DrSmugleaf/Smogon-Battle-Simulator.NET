@@ -2,7 +2,7 @@
 using SmogonBattleSimulator.NET.Generations.I.Events;
 using SmogonBattleSimulator.NET.Generations.I.Move.Effect;
 
-namespace SmogonBattleSimulator.NET.UnitTests.Move.Effect
+namespace SmogonBattleSimulator.NET.UnitTests.Moves.Effect
 {
     [TestFixture]
     [TestOf(typeof(BaseEffect))]

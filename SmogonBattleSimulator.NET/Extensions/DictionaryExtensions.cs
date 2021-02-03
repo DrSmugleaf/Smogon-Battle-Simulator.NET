@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SmogonBattleSimulator.NET.Extensions
 {
@@ -18,6 +19,17 @@ namespace SmogonBattleSimulator.NET.Extensions
             }
 
             return value;
+        }
+
+        public static void WithDefaults<K, V>(this IDictionary<K, V> dictionary, V defaultValue = default) where K : Enum where V : struct
+        {
+            foreach (K key in Enum.GetValues(typeof(K)))
+            {
+                if (!dictionary.ContainsKey(key))
+                {
+                    dictionary[key] = defaultValue;
+                }
+            }
         }
     }
 }

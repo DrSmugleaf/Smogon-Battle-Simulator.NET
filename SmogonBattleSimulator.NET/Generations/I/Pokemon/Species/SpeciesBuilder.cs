@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using SmogonBattleSimulator.NET.Collections.IndexedSet;
-using SmogonBattleSimulator.NET.Extensions;
 using SmogonBattleSimulator.NET.Generations.I.Move;
 using SmogonBattleSimulator.NET.Generations.I.Pokemon.Species.Stat;
 using SmogonBattleSimulator.NET.Generations.I.Pokemon.Species.Tier;
@@ -64,19 +64,30 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Species
 
         public ISpecies Build()
         {
+            Debug.Assert(Health != null, nameof(Health) + " != null");
+            Debug.Assert(Attack != null, nameof(Attack) + " != null");
+            Debug.Assert(Defense != null, nameof(Defense) + " != null");
+            Debug.Assert(Special != null, nameof(Special) + " != null");
+            Debug.Assert(Speed != null, nameof(Speed) + " != null");
+            Debug.Assert(Weight != null, nameof(Weight) + " != null");
+            Debug.Assert(Height != null, nameof(Height) + " != null");
+            Debug.Assert(Types != null, nameof(Types) + " != null");
+            Debug.Assert(Moves != null, nameof(Moves) + " != null");
+            Debug.Assert(Tier != null, nameof(Tier) + " != null");
+
             return new Species(
                 Id,
                 Name,
-                Health.GetOrThrow(),
-                Attack.GetOrThrow(),
-                Defense.GetOrThrow(),
-                Special.GetOrThrow(),
-                Speed.GetOrThrow(),
-                Weight.GetOrThrow(),
-                Height.GetOrThrow(),
-                Types.GetOrThrow(),
-                Moves.GetOrThrow(),
-                Tier.GetOrThrow());
+                Health,
+                Attack,
+                Defense,
+                Special,
+                Speed,
+                Weight.Value,
+                Height.Value,
+                Types,
+                Moves,
+                Tier);
         }
     }
 }

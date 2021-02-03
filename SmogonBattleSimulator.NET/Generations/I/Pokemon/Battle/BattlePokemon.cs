@@ -3,8 +3,8 @@ using System.Linq;
 using SmogonBattleSimulator.NET.Collections.IndexedSet;
 using SmogonBattleSimulator.NET.Generations.I.Move;
 using SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle.Stat;
-using SmogonBattleSimulator.NET.Generations.I.Pokemon.Species.Stat;
 using SmogonBattleSimulator.NET.Generations.I.Pokemon.Species.Tier;
+using SmogonBattleSimulator.NET.Generations.I.Pokemon.Stat;
 using SmogonBattleSimulator.NET.Generations.I.Status.NonVolatile;
 using SmogonBattleSimulator.NET.Generations.I.Type;
 
@@ -14,15 +14,15 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle
     {
         public BattlePokemon(
             string name,
-            string nickname,
+            string? nickname,
             int level,
-            IBattleStat health,
-            IBattleStat attack,
-            IBattleStat defense,
-            IBattleStat special,
-            IBattleStat speed,
-            IBattleStat evasion,
+            IPermanentStat health,
+            IPermanentStat attack,
+            IPermanentStat defense,
+            IPermanentStat special,
+            IPermanentStat speed,
             IBattleStat accuracy,
+            IBattleStat evasion,
             decimal weight,
             decimal height,
             IReadOnlyIndexedSet<IType> types,
@@ -37,8 +37,8 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle
             Defense = defense;
             Special = special;
             Speed = speed;
-            Evasion = evasion;
             Accuracy = accuracy;
+            Evasion = evasion;
             Weight = weight;
             Height = height;
             Types = types;
@@ -48,25 +48,25 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle
 
         public string Name { get; }
 
-        public string Nickname { get; }
+        public string? Nickname { get; }
 
         public int Level { get; }
 
         public int CurrentHealth { get; private set; }
 
-        public IBattleStat Health { get; }
+        public IPermanentStat Health { get; }
 
-        public IBattleStat Attack { get; }
+        public IPermanentStat Attack { get; }
 
-        public IBattleStat Defense { get; }
+        public IPermanentStat Defense { get; }
 
-        public IBattleStat Special { get; }
+        public IPermanentStat Special { get; }
 
-        public IBattleStat Speed { get; }
-
-        public IBattleStat Evasion { get; }
+        public IPermanentStat Speed { get; }
 
         public IBattleStat Accuracy { get; }
+
+        public IBattleStat Evasion { get; }
 
         public decimal Weight { get; }
 
@@ -85,15 +85,15 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle
             return Types.Any(t => t == type);
         }
 
-        public IBattleStat Stat(StatType ofType)
+        public IPermanentStat Stat(PermanentStatType ofType)
         {
             return ofType switch
             {
-                StatType.Health => Health,
-                StatType.Attack => Attack,
-                StatType.Defense => Defense,
-                StatType.Special => Special,
-                StatType.Speed => Speed,
+                PermanentStatType.Health => Health,
+                PermanentStatType.Attack => Attack,
+                PermanentStatType.Defense => Defense,
+                PermanentStatType.Special => Special,
+                PermanentStatType.Speed => Speed,
                 _ => throw new ArgumentOutOfRangeException(nameof(ofType), ofType, null)
             };
         }

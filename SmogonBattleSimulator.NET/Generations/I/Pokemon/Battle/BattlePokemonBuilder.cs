@@ -1,23 +1,25 @@
-﻿using System.Collections.Generic;
+﻿using System.Diagnostics;
 using SmogonBattleSimulator.NET.Collections.IndexedSet;
 using SmogonBattleSimulator.NET.Extensions;
 using SmogonBattleSimulator.NET.Generations.I.Formulas;
 using SmogonBattleSimulator.NET.Generations.I.Move;
 using SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle.Stat;
+using SmogonBattleSimulator.NET.Generations.I.Pokemon.Species;
 using SmogonBattleSimulator.NET.Generations.I.Pokemon.Species.Tier;
+using SmogonBattleSimulator.NET.Generations.I.Pokemon.Stat;
 using SmogonBattleSimulator.NET.Generations.I.Type;
 
 namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle
 {
     public class BattlePokemonBuilder
     {
-        private int _level;
-
         public BattlePokemonBuilder(IStatFormula statFormula, string name, int lvl)
         {
             StatFormula = statFormula;
             Name = name;
             Level = lvl;
+            PermanentStatBuilder = new PermanentStatBuilder(statFormula);
+            BattleStatBuilder = new BattleStatBuilder(statFormula);
         }
 
         public IStatFormula StatFormula { get; }
@@ -26,38 +28,11 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle
 
         public string? Nickname { get; set; }
 
-        public int Level
-        {
-            get => _level;
-            set
-            {
-                if (_level == value)
-                {
-                    return;
-                }
+        public int Level { get; set; }
 
-                _level = value;
+        public PermanentStatBuilder PermanentStatBuilder { get; set; }
 
-                foreach (var stat in GetAllStats())
-                {
-                    stat.Level = value;
-                }
-            }
-        }
-
-        public IBattleStat? Health { get; set; }
-
-        public IBattleStat? Attack { get; set; }
-
-        public IBattleStat? Defense { get; set; }
-
-        public IBattleStat? Special { get; set; }
-
-        public IBattleStat? Speed { get; set; }
-
-        public IBattleStat? Evasion { get; set; }
-
-        public IBattleStat? Accuracy { get; set; }
+        public BattleStatBuilder BattleStatBuilder { get; set; }
 
         public decimal? Weight { get; set; }
 
@@ -69,54 +44,50 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle
 
         public ITier? Tier { get; set; }
 
-        public IEnumerable<IBattleStat> GetAllStats()
+        public BattlePokemonBuilder WithSpecies(ISpecies species, int iv = 0, int ev = 0)
         {
-            if (Health != null) yield return Health;
-            if (Attack != null) yield return Attack;
-            if (Defense != null) yield return Defense;
-            if (Special != null) yield return Special;
-            if (Speed != null) yield return Speed;
-            if (Evasion != null) yield return Evasion;
-            if (Accuracy != null) yield return Accuracy;
+            PermanentStatBuilder
+                .Species(species)
+                .IndividualValue(iv)
+                .EffortValue(ev);
+
+            Weight = species.Weight;
+            Height = species.Height;
+
+            Types = species.Types.ToIndexedSet();
+            Moves = species.Moves.ToIndexedSet();
+            Tier = species.Tier;
+
+            return this;
         }
 
-        public void SetAllStats(int baseValue, int iv, int ev)
+        public IBattlePokemon Build(ISpecies species)
         {
-            var statBuilder = new BattleStatBuilder(StatFormula)
-            {
-                BaseValue = baseValue,
-                Level = Level,
-                IndividualValue = iv,
-                EffortValue = ev
-            };
+            Debug.Assert(Weight != null, nameof(Weight) + " != null");
+            Debug.Assert(Height != null, nameof(Height) + " != null");
+            Debug.Assert(Types != null, nameof(Types) + " != null");
+            Debug.Assert(Moves != null, nameof(Moves) + " != null");
+            Debug.Assert(Tier != null, nameof(Tier) + " != null");
 
-            Health = statBuilder.Build(BattleStatType.Health);
-            Attack = statBuilder.Build(BattleStatType.Attack);
-            Defense = statBuilder.Build(BattleStatType.Defense);
-            Special = statBuilder.Build(BattleStatType.Special);
-            Speed = statBuilder.Build(BattleStatType.Speed);
-            Evasion = statBuilder.Build(BattleStatType.Evasion);
-            Accuracy = statBuilder.Build(BattleStatType.Accuracy);
-        }
+            var permanentStats = PermanentStatBuilder.BuildCollection(species, Level);
+            var battleStats = BattleStatBuilder.BuildCollection();
 
-        public IBattlePokemon Build()
-        {
             return new BattlePokemon(
                 Name,
-                Nickname ?? string.Empty,
+                Nickname,
                 Level,
-                Health.GetOrThrow(),
-                Attack.GetOrThrow(),
-                Defense.GetOrThrow(),
-                Special.GetOrThrow(),
-                Speed.GetOrThrow(),
-                Evasion.GetOrThrow(),
-                Accuracy.GetOrThrow(),
-                Weight.GetOrThrow(),
-                Height.GetOrThrow(),
-                Types.GetOrThrow(),
-                Moves.GetOrThrow(),
-                Tier.GetOrThrow());
+                permanentStats.Health,
+                permanentStats.Attack,
+                permanentStats.Defense,
+                permanentStats.Special,
+                permanentStats.Speed,
+                battleStats.Accuracy,
+                battleStats.Evasion,
+                Weight.Value,
+                Height.Value,
+                Types,
+                Moves,
+                Tier);
         }
     }
 }

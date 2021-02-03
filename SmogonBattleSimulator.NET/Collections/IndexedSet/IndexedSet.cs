@@ -9,16 +9,30 @@ namespace SmogonBattleSimulator.NET.Collections.IndexedSet
         private readonly HashSet<T> _set;
         private readonly List<T> _list;
 
-        public IndexedSet(int capacity, IEqualityComparer<T>? comparer = null)
-        {
-            _set = new HashSet<T>(capacity, comparer);
-            _list = new List<T>(capacity);
-        }
-
         public IndexedSet()
         {
             _set = new HashSet<T>();
             _list = new List<T>();
+        }
+
+        public IndexedSet(IEnumerable<T> enumerable)
+        {
+            if (enumerable is IndexedSet<T> otherSet)
+            {
+                _set = new HashSet<T>(otherSet._set);
+                _list = new List<T>(otherSet._list);
+
+                return;
+            }
+
+            _set = new HashSet<T>(enumerable);
+            _list = new List<T>(_set);
+        }
+
+        public IndexedSet(int capacity, IEqualityComparer<T>? comparer = null)
+        {
+            _set = new HashSet<T>(capacity, comparer);
+            _list = new List<T>(capacity);
         }
 
         public IEnumerator<T> GetEnumerator()

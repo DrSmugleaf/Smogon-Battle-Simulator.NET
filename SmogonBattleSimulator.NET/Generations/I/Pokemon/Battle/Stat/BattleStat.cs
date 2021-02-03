@@ -7,37 +7,25 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Battle.Stat
 {
     public class BattleStat : IBattleStat
     {
-        public BattleStat(IStatFormula formula, BattleStatType statType, int baseValue, int level, int iv, int ev)
+        public BattleStat(IStatFormula formula, BattleStatType statType, IEnumerable<decimal>? modifiers = null)
         {
             Formula = formula;
             StatType = statType;
-            BaseValue = baseValue;
-            ModifiedValue = baseValue;
-            Level = level;
-            IndividualValue = iv;
-            EffortValue = ev;
-            Modifiers = new List<decimal>();
+            Value = 1;
+            Modifiers = modifiers?.ToList() ?? new List<decimal>();
         }
 
         public IStatFormula Formula { get; }
 
         public BattleStatType StatType { get; }
 
-        public int BaseValue { get; }
-
-        public int Level { get; set; }
-
-        public int IndividualValue { get; }
-
-        public int EffortValue { get; }
-
-        public int ModifiedValue { get; private set; }
+        public decimal Value { get; private set; }
 
         private List<decimal> Modifiers { get; }
 
         private void Recalculate()
         {
-            ModifiedValue = (int) (Formula.CalculateStat(this) * Modifiers.Sum());
+            Value = Modifiers.Aggregate(1M, (x, y) => x * y);
         }
 
         public IModifierToken AddMultiplier(decimal multiplier)

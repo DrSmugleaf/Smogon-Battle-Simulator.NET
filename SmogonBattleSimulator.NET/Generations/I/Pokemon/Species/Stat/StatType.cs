@@ -6,8 +6,6 @@
         Attack,
         Defense,
         Special,
-        Speed,
-        Evasion,
-        Accuracy
+        Speed
     }
 }

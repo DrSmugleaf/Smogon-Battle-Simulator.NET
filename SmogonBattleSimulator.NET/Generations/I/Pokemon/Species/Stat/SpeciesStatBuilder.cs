@@ -1,4 +1,4 @@
-﻿using SmogonBattleSimulator.NET.Extensions;
+﻿using System.Diagnostics;
 
 namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Species.Stat
 {
@@ -8,7 +8,9 @@ namespace SmogonBattleSimulator.NET.Generations.I.Pokemon.Species.Stat
 
         public ISpeciesStat Build(StatType type)
         {
-            return new SpeciesStat(type, Value.GetOrThrow());
+            Debug.Assert(Value != null, nameof(Value) + " != null");
+
+            return new SpeciesStat(type, Value.Value);
         }
     }
 }

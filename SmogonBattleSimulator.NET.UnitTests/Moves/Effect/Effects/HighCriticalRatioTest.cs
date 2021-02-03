@@ -3,7 +3,7 @@ using SmogonBattleSimulator.NET.Generations.I.Events;
 using SmogonBattleSimulator.NET.Generations.I.Formulas;
 using SmogonBattleSimulator.NET.Generations.I.Move.Effect.Effects;
 
-namespace SmogonBattleSimulator.NET.UnitTests.Move.Effect.Effects
+namespace SmogonBattleSimulator.NET.UnitTests.Moves.Effect.Effects
 {
     [TestFixture]
     [TestOf(typeof(HighCriticalRatioEffect))]
